@@ -15,6 +15,10 @@
 #ifdef PADDLE_WITH_CUDA
 #include <xxhash.h>
 
+#include <iostream>
+#include <chrono>
+#include <thread>
+
 #include <algorithm>
 #include <cstddef>
 #include <cstdint>
@@ -378,6 +382,10 @@ void ConvFusionKernel(const Context& ctx,
   auto handle = ctx.cudnn_handle();
   ctx.template Alloc<T>(output);
   auto workspace_handle = ctx.cudnn_workspace_handle();
+
+  std::chrono::milliseconds duration(50);
+  std::this_thread::sleep_for(duration);
+  std::cout << "50 ms sleep done!!!!!!!!" << std::endl;
 
   exhaustive_search = FLAGS_cudnn_exhaustive_search || exhaustive_search;
   bool deterministic = FLAGS_cudnn_deterministic;
