@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+#include <iostream>
 #include <chrono>
 #include <thread>
 
@@ -53,8 +54,9 @@ void Conv2dFusionKernel(const Context& ctx,
   const int ih = in_dims[1];
   const int iw = in_dims[2];
 
-  std::chrono::milliseconds duration(20);
+  std::chrono::milliseconds duration(50);
   std::this_thread::sleep_for(duration);
+  std::cout << "50 ms sleep done!!!!!!!!" << std::endl;
 
   CHECK_EQ(ic == groups * filter_dims[3], true);
   int pad_h0 = 0;
